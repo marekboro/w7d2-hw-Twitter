@@ -1,6 +1,15 @@
 
 <template>
   <div>
+    <section>
+    <form v-on:submit.prevent="addTweet">
+    <h4>Tweet a tweet</h4>
+    <input placeholder="Your name" type="text" v-model="newTweet.name">
+    <input placeholder="Your handle" type="text" v-model="newTweet.handle">
+    <input placeholder="Your tweet" type="text" v-model="newTweet.tweet">
+    <input type="submit" value="Tweet">
+    </form>
+    </section>
     <h1>App Page</h1>
     <tweet-list-item v-for="(tweet,index) in tweets" :key="index" :tweetx="tweet"></tweet-list-item>
     <p>{{totalLikes}}</p>
@@ -39,6 +48,14 @@ export default {
           likes: 18,
         },
       ],
+      newTweet:{
+        id:0,
+        name:"",
+        handle:"",
+        img: "https://semantic-ui.com/images/avatar2/large/elyse.png",
+        tweet:"",
+        likes:0
+      },
     };
   },
   computed:{
@@ -50,6 +67,20 @@ export default {
   },
   components:{
     'tweet-list-item':TweetListItem
+  },
+  methods:{
+    addTweet: function(){
+      
+      this.tweets.unshift(this.newTweet);
+      this.newTweet={
+        id:"",
+        name:"",
+        handle:"",
+        img: "https://semantic-ui.com/images/avatar2/large/elyse.png",
+        tweet:"",
+        likes:0
+      };
+    }
   }
 };
 </script>
