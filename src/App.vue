@@ -2,11 +2,13 @@
 <template>
   <div>
     <h1>App Page</h1>
+    <tweet-list-item v-for="(tweet,index) in tweets" :key="index" :tweetx="tweet"></tweet-list-item>
     <p>{{totalLikes}}</p>
   </div>
 </template>
 
 <script>
+import TweetListItem from './components/TweetListItem.vue' 
 export default {
   name: 'app',
   data() {
@@ -45,6 +47,9 @@ export default {
         return total+tweet.likes
       },0)
     }
+  },
+  components:{
+    'tweet-list-item':TweetListItem
   }
 };
 </script>
