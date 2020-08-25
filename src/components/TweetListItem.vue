@@ -12,7 +12,7 @@
       <div id="tweet">
         <p>{{tweetx.tweet}}</p>
       </div>
-      <div id="likes">
+      <div :class="likesStyling">
         <p> Likes: {{tweetx.likes}}</p>
       </div>
     </li>
@@ -23,6 +23,11 @@
 export default {
   name: "tweet-list-item",
   props: ["tweetx"],
+  computed:{
+      likesStyling: function(){
+          return this.tweetx.likes>=10 ? "overTenLikes":"underTenLikes"
+      }
+  }
 };
 </script>
 
@@ -57,8 +62,12 @@ li{
 background-color: cornsilk;
 font-size: 130%;
 }
-#likes {
+.underTenLikes {
     background-color: rgb(97, 234, 252);
+
+}
+.overTenLikes {
+    background-color: rgb(11, 228, 11);
 
 }
 p{
